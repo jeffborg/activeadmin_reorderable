@@ -7,7 +7,7 @@ module ActiveAdmin
         options[:class] = [options[:class], 'aa-reorderable'].compact.join(' ')
 
         super(collection, options) do
-          reorder_column
+          reorder_column if authorized?(:reorder, resource_class)
           block.call if block.present?
         end
       end
